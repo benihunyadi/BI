@@ -1,0 +1,19 @@
+version: '3'
+services:
+   jupyter:
+      build: ./az_en_jupyter_mappam
+      container_name: jupyter
+      restart: always
+      ports:
+         - '8888:8888'
+      volumes:
+         - ./az_en_jupyter_mappam:/home/jovyan/work
+      networks:
+         dc2net:
+            ipv4_address: 172.28.1.1
+networks:
+    dc2net:
+        ipam:
+            driver: default
+            config:
+                - subnet: 172.28.0.0/16
